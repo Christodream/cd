@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulaire de demande</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f2f2f2;
+      flex-direction: column;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      background-image: url(/image/f9c74afeb60c062dae96c322aecebd3b.jpg);
+      background-size: cover;
+      filter: blur(5px); 
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: auto;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .logo {
+      height: 150px;
+      width: 280px;
+      background-image: url(/image/Groupe.png);
+      background-size: cover;
+    }
+
+    .required::after {
+      content: " *";
+      color: red;
+    }
+    
+    .additional-fields {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo"></div>
+  <div class="container">
+    <h2 style="text-align: center;">Formulaire de mise à jour</h2>
+    <form action="form.php" method="post" enctype="multipart/form-data">
+      <label for="nom" class="required">Nom Prénom :</label>
+      <input type="text" id="nom" name="nom" required>
+
+     
+
+      <label for="entreprise" class="required">Entreprise :</label>
+      <input type="text" id="entreprise" name="entreprise">
+
+      <label for="numero-compte" class="required">Numéro de compte concerné :</label>
+      <input type="text" id="numero-compte" name="numero-compte">
+
+      <label for="email" class="required">E-mail :</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telephone" class="required">Numéro de téléphone :</label>
+      <input type="tel" id="telephone" name="telephone" pattern="[0-9]{10}" required><br><br>
+
+      <label for="objet" class="required">Objet de la demande :</label>
+      <select id="objet" name="objet" onchange="toggleAdditionalFields()">
+        <option value="">-- Sélectionnez --</option>
+        <option value="virement">Capital social</option>
+        <option value="virement2">Participants au capital social</option>
+        <option value="virement2">Bénéficiaire effectif</option>
+        <option value="virement">APE</option>
+        <option value="virement">SIRET</option>
+        <option value="virement">Code NIC</option>
+        <option value="virement">Effectuer une MAJ de l'état civil</option>
+        <option value="virement">Création personne morale</option>
+        <option value="virement">Création personne physique</option>
+        <option value="virement2">Dénomination</option>
+        <option value="">Autre</option>
+      </select>
+
+      <div class="additional-fields">
+        <label for="nom-destinataire" class="required">Kbis (moins de 3 mois):</label>
+        
+      <input type="file" id="fichier" name="fichier">
+      
+        <label for="nom-destinataire" class="required">Fiche Insee:</label>
+        <input type="file" id="fichier" name="fichier">
+
+        
+      </div>
+      
+      <div class="additional-fields2">
+        <label for="nom-destinataire2" class="required">Kbis (moins de 3 mois):</label>
+        
+      <input type="file" id="fichier" name="fichier">
+      
+        <label for="nom-destinataire2" class="required">Fiche Insee:</label>
+        <input type="file" id="fichier" name="fichier">
+
+        <label for="nom-destinataire2" class="required">PV ou statuts modifiés:</label>
+        <input type="file" id="fichier" name="fichier">
+
+        
+      </div>
+
+     
+
+      <label for="commentaire">Commentaire:</label>
+      <textarea id="commentaire" name="commentaire"></textarea>
+
+      <input type="submit" value="Soumettre">
+    </form>
+  </div>
+  <div class="button-container">
+    <a href="index.html">index</a>
+  </div>
+  <script>
+    
+    function toggleAdditionalFields() {
+        toggleAdditionalFields2()
+      
+        var objet = document.getElementById('objet');
+      var additionalFields = document.getElementsByClassName('additional-fields')[0];
+
+      if (objet.value === 'virement' ) {
+        additionalFields.style.display = 'block';
+      } else {
+        additionalFields.style.display = 'none';
+      }
+    }
+
+    function toggleAdditionalFields2() {
+      var objet = document.getElementById('objet');
+      var additionalFields = document.getElementsByClassName('additional-fields2')[0];
+
+      if (objet.value === 'virement2' ) {
+        additionalFields.style.display = 'block';
+      } else {
+        additionalFields.style.display = 'none';
+      }
+    }
+   
+  </script>
+</body>
+</html>
